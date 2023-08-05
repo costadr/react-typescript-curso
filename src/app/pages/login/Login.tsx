@@ -1,18 +1,17 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const emailLength = useMemo(() => {
-    console.log('alterou')  
     return email.length * 1000;
   }, [email.length]);
   
-  const handleEntrar = () => {
-    console.log(email)
-    console.log(password)
-  }
+  const handleEntrar = useCallback(() => {
+      console.log(email)
+      console.log(password)
+  }, [email, password]);
   
   return (
     <div>

@@ -25,16 +25,17 @@ export const Login = () => {
         <p>Quantidade de caracteres no email: {emailLength}</p>
         <InputLogin 
           label="Email"
-          value={password}
-          onChange={newValue => setPassword(newValue)}
+          value={email}
+          onChange={newValue => setEmail(newValue)}
+          onPressEnter={() => inputPasswordRef.current?.focus()}
         />
 
         <InputLogin 
-          type="password"
           label="Senha"
-          value={email}
-          onChange={newValue => setEmail(newValue)} 
-          onPressEnter={() => inputPasswordRef.current?.focus()}
+          type="password"
+          value={password}
+          ref={inputPasswordRef}
+          onChange={newValue => setPassword(newValue)} 
         />
 
         {/* <label>

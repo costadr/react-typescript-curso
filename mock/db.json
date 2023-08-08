@@ -11,11 +11,6 @@
       "isCompleted": false
     },
     {
-      "title": "Tarefa nova",
-      "isCompleted": false,
-      "id": 3
-    },
-    {
       "title": "Tarefa 04",
       "isCompleted": true,
       "id": 4

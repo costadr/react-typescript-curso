@@ -3,7 +3,6 @@ import { ITarefa, TarefasService } from "../../shared/services/api/tarefas/Taref
 import { ApiException } from "../../shared/services/api/ApiException";
 
 export const Dashboard = () => {
-
   const [lista, setLista] = useState<ITarefa[]>([]);
 
   useEffect(() => {
@@ -22,22 +21,21 @@ export const Dashboard = () => {
       if (e.currentTarget.value.trim().length === 0) return;
 
       const value = e.currentTarget.value;
+
       e.currentTarget.value = '';
 
-      setLista((oldLista) => {
-        if (oldLista.some((listItem) => listItem.title === value)) return oldLista;
+      if (lista.some((listItem) => listItem.title === value)) return;
 
-        return [
-          ...oldLista,
-          {
-            title: value,
-            isCompleted: false,
-            id: oldLista.length,
+      TarefasService.create({ title: value, isCompleted: false })
+        .then((result) => {
+          if (result instanceof ApiException) {
+            alert(result.message);
+          } else {
+            setLista((oldLista) => [...oldLista, result]);
           }
-        ];
-      });
+        });
     }
-  }, []);
+  }, [lista]);
 
   return (
     <div>
